@@ -11,13 +11,18 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, 3);
+        //Destroy(gameObject, 3);
     }
 
     // Update is called once per frame
     void Update()
     {
         velocity = direction * speed;
+        Vector2 pos = transform.position;
+        if (pos.x > 17.9f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void FixedUpdate()

@@ -6,26 +6,36 @@ using UnityEngine.UI;
 public class HealthController : MonoBehaviour
 {
     public int playerHealth;
+    public int numofhearts;
+    public Sprite fullHP;
+    public Sprite emptyHP;
 
     [SerializeField] private Image[] hearts;
 
-    private void start()
-    {
-        UpdateHealth();
-    }
 
-    public void UpdateHealth()
+    void Update()
     {
-
+        if(playerHealth > numofhearts)
+        {
+            playerHealth = numofhearts;
+        }
         for (int i = 0; i < hearts.Length; i++)
         {
             if (i < playerHealth)
             {
-                hearts[i].color = Color.red;
+                hearts[i].sprite = fullHP;
             }
             else
             {
-                hearts[i].color = Color.black;
+                hearts[i].sprite = emptyHP;
+            }
+            if (i < numofhearts)
+            {
+                hearts[i].enabled = true;
+            }
+            else
+            {
+                hearts[i].enabled = false;
             }
         }
     }
